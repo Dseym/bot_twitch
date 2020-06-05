@@ -7,6 +7,7 @@ import time
 nickBot = "" # Ник бота
 id_token = "" # ID клиента приложения
 secret = "" # Секрет вашего приложения
+channelName = "" # Канал, где будет работать бот
 
 # Инициализация бота
 bot = commands.Bot(
@@ -14,7 +15,7 @@ bot = commands.Bot(
     client_id=id_token,
     nick=nickBot,
     prefix="!", # Префикс комманд (!test)
-    initial_channels=[] # Каналы, где будет работать бот
+    initial_channels=[channelName]
 )
 
 
@@ -103,7 +104,7 @@ async def event_message(ctx):
 async def follow_date(ctx):
 	
 	global bot_mess
-	channel = "zakvielchannel" # <-- Канал
+	channel = channelName
 	headers = {'Client-ID': id_token, 'Authorization': 'Bearer ' + secret,}
 
 	channel_id_GET = requests.get("https://api.twitch.tv/helix/users?login=" + channel, headers=headers)
